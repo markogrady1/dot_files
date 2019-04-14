@@ -16,13 +16,13 @@ WORKDIR /srv/app
 
 # Install the dependencies to ./local
 COPY cpanfile /srv/app
-RUN cpm install --mirror https://cpan.metacpan.org --mirror $PINTO_MIRROR --mirror-only
+RUN cpm install --mirror https://cpan.metacpan.org --mirror-only
 
 # Copy project code
 COPY . /srv/app
 
 # Run the tests
-#RUN prove -Mlocal::lib=local -Ilib -It/lib -j4 -lvr t/
+RUN prove -Mlocal::lib=local -Ilib -It/lib -j4 -lvr t/
 
 # Start the app
 CMD ["perl", "-Mlocal::lib=local", "bin/app.pl", "daemon"]
