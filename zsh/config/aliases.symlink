@@ -1,0 +1,95 @@
+#alias to add bitbucket ssh key
+alias addbit='ssh-add ~/.ssh/id_rsa'
+#alias to eval the ssh agent
+alias addagent='eval `ssh-agent`'
+#alias for ngrok port tunnelling
+alias ngrok='~/./ngrok http '
+#alias open safari
+alias safari='open /Applications/Safari.app'
+# alias for opening xampp mysql
+alias xsql='/Applications/xampp/xamppfiles/bin/mysql -u root -p'
+#alias opens telegram
+#alias tgram='open /Applications/Telegram.app'
+#alias opens firefox
+alias firefox='open /Applications/Firefox.app'
+#alias opens chrome browser
+alias chrome='open /Applications/Google\ Chrome.app'
+#alias opens the XAMPP manager-osx
+alias xampp='open /Applications/XAMPP/manager-osx.app'
+#alias opens textmate
+alias tmate='open /Applications/TextMate.app'
+#this next set of commands apply to git
+#alias for git status
+alias gs='git status '
+#alias for git diff
+alias gd='git diff '
+#alias for git add
+alias ga='git add '
+#alias for git commit
+alias gc='git commit '
+#alias for git push
+alias gp='git push '
+#alias for git pull
+alias gpull='git pull '
+#alias for git log
+alias gl='git log '
+#alias for my personnel styled git log
+alias glog='git lg '
+#alias for adding and commiting at same time
+alias gca='git commit -am '
+#alias for git branch
+alias gb='git branch '
+#alias for git checkout
+alias gco='git checkout '
+alias gitco='git checkout '
+#alias for git branch -l
+alias gbl='git branch -l '
+#alias for git pretty branching
+alias lgp='git log --pretty=oneline --graph --decorate --all'
+#alias for starting a mongodb server instance
+alias mgo='mongod'
+#alias for viewing environment variables
+alias penv='printenv'
+#alias for opening macvim
+alias mvi='mvim'
+# alias for vagrant box ssh
+alias vssh='vagrant ssh'
+# postgres in bash shell
+alias pgres='"/Applications/Postgres.app/Contents/Versions/9.6/bin/psql" -p5432 -d "postgres"'
+# alias to exit bash terminal
+alias ex='exit'
+# alias for view docker images
+alias dockimg='docker images'
+# alias for view docker containers
+alias dockcont='docker ps -a'
+# alias for starting redis server
+alias redserv='redis-server'
+# alias to use 'bat' instead of 'cat'
+alias cat='bat --style=plain,grid,header'
+# alias to cd into local copy of cheerleader
+alias less='bat --style=plain,grid,header'
+# alias to use 'podify' which will add POD to perl module
+alias podify='~/perl5/bin/podify.pl '
+# alias to use local::lib in current shell
+alias localeval='eval $( perl -Mlocal::lib=./local )'
+# alias for paralel running of tests
+alias rt='prove -r -j5 -I lib/ -I t/lib/ -Mlocal::lib=local t/'
+# alias for entre to watch tests
+alias watch="entre_watch $1"
+
+# ================================================
+
+# docker aliases
+# ================================================
+alias dcd='docker-compose down'
+alias dcu='docker-compose up'
+# ================================================
+
+# ================================================
+# function used to run entre when perl modules or 
+# perl tests are changed
+# ================================================
+function entre_watch {
+    find lib/ t/ -name '*.pm' -o -name '*.t' | entr -s "prove -r $1"
+
+}

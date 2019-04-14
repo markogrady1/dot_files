@@ -1,0 +1,11 @@
+#!/bin/sh
+
+export CPAN_MIRROR=https://cpan.metacpan.org
+
+export PLENV_VERSION="5.24.0"
+
+cpan local::lib App::cpm CPAN Log::Log4perl Term::ReadKey Term::ReadLine::Gnu
+
+eval "$(perl -Mlocal::lib=local)"
+
+export PERL5LIB="$(pwd)/lib:$(pwd)/t/lib:${PERL5LIB}"

@@ -1,0 +1,348 @@
+""" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+""" alternatively, pass a path where Vundle should install plugins
+"""call vundle#begin('~/some/path/here')
+""
+" Vundle package manager
+Plugin 'VundleVim/Vundle.vim'
+" Git wrapper vim-fugitive
+Plugin 'vim-fugitive'
+" File finder command-t
+Plugin 'wincent/command-t'
+" parser for a condensed HTML format sparkup
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" distraction free vim goyo.vim
+Plugin 'junegunn/goyo.vim'
+" quoting/parenthesizing made simple with vim-surround
+Plugin 'tpope/vim-surround'
+" Vastly improved Javascript indentation and syntax support in Vim.
+Plugin 'pangloss/vim-javascript'
+" Javascript syntax highlighter with some nice colors
+Plugin 'jelera/vim-javascript-syntax'
+" Syntastic for sytax typo highlighting
+Plugin 'vim-syntastic/syntastic'
+" handy plugin to open NerdTree in all tabs rather than on the one.
+Plugin 'jistr/vim-nerdtree-tabs'
+
+call vundle#end()            " required
+
+" set runtimepath for ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CURSOR LINE
+" Set the cursor line to be visisble and underlined
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set cursorline
+"hi clear CursorLine
+"hi CursorLine gui=underline
+"hi CursorLine term=bold cterm=bold guibg=grey10
+"highlight Cursorline cterm=bold
+set number
+"set relativenumber
+
+"In some colorschemes the current line highlighting changes background, in others, like Desert, the current line is underlined.
+
+"I want to change the current line highlighting in Desert to use a different background color instead of underlining. How can I do that?
+
+"My .vimrc:
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PREVENT FOLDING OF CODE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nofoldenable
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLOR SCHEME
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set colorscheme
+"colorscheme desert
+colorscheme delek
+color dracula
+"colorscheme solarized
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FONTS PER SYSTEM
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set guifont=Inconsolata\ for\ Powerline:h15
+"set t_Co=256
+"set fillchars+=stl:\ ,stlnc:\
+"set term=xterm-256color
+"set termencoding=utf-8
+"if has("gui_running")
+"   let s:uname = system("uname")
+"   if s:uname == "Darwin\n"
+"      set guifont=Inconsolata\ for\ Powerline:h15
+"   endif
+"endif
+"source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+"execute pathogen#infect()
+
+set encoding=utf-8
+set autoindent
+"set sytax colors on
+syntax on
+"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
+"set the tab size
+"set ts=4
+"replace tabs with spaces
+"set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+"disable/enable visual alarms 'ding'
+set visualbell
+"show the line numbers that are highlighted
+"set showcmd
+"set status line so its visible
+set laststatus=2
+
+"set powerline symbols
+let g:Powerline_symbols = 'fancy'
+
+"enable macvim to have its own colorscheme
+let macvim_skip_colorscheme=1
+"set left seperator
+let g:airline#extensions#tabline#left_sep = ""
+let g:airline_left_sep=""
+"set right seporator
+let g:airline_right_sep=""
+"set the theme for vim-airline
+let g:airline_theme = 'dark'
+
+"enable/disable airline fonts
+"let g:airline_powerline_fonts=1
+"set the theme for vim-airline
+let g:airline_theme = 'dark'
+set background=dark
+set linespace=2
+set statusline +=%4*\ %<%F%*
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set showmode
+
+"set the color schemes for templates and bash
+autocmd BufNewFile,BufRead *.template   set syntax=perl
+"autocmd BufNewFile,BufRead *.t   set syntax=perl
+autocmd FileType *.sh colorscheme desert
+autocmd BufNewFile,BufRead *.sh  colorscheme desert
+"autocmd BufNewFile,BufRead *.template  colorscheme slate
+
+"this will highlight each and every match during a word search
+set hlsearch
+set timeoutlen=1000 ttimeoutlen=0
+
+"set the color of NerdTree dir/files
+hi Directory guifg=#7ad7fc ctermfg=45
+"set the color of the split line between files and directory(NerdTree)
+highlight VertSplit ctermbg=45
+highlight VertSplit ctermfg=45
+set noeb vb t_vb=
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TURN OFF ARROW KEYS
+" Set up to train myself to only use traditional vim keys h-j-k-l
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <Left> :echo "Please use H key!"<cr>
+"map <Right> :echo "Please use L key!"<cr>
+"map <Up> :echo "Please use K key!"<cr>
+"map <Down> :echo "Please use J key!"<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAP TOGGLE of NERDTree HIDE/SHOW
+" To toggle of NERDTree display it is mapped to F7 - i.e (fn + F7)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map  <F7> :NERDTreeToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAP TOGGLE of :NERDTreeTabsToggle HIDE/SHOW
+" To toggle of NERDTree display it is mapped to F9 - i.e (fn + F9)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map  <F9> :NERDTreeTabsToggle<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAP the usage of CTRLP search tool
+" To search with CTRLP it is mapped to F6 - i.e (fn + F6)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map  <F6> ::CtrlP<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAP THE ESCAPE TO DOUBLE J
+" Instead of constantly reaching for the ESC key, we can hit jj
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap jj <Esc>	sd
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FAT COMMA SHORTCUT
+" map ctrl+l to create a fat comma surrounded with spaces
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <c-l> <space>=><space>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SEARCH HIGHLIGHTING
+" map the delete key to turn off search highlighting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <BS> :nohlsearch<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" POPULAR PERL CODE SHORTCUTS
+" set some abbreviations for popular perl code constructs
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+iab psh #!/usr/bin/env perl<CR><CR>use warnings;<CR>use strict;<CR>
+iab bsh #!/bin/bash
+iab udd use Data::Dumper;<CR>
+iab pdd print Dumper
+iab uddx use Data::Dump 'ddx';<CR>ddx;<LEFT>
+iab udv use Dumpvalue;<CR>Dumpvalue->new->dumpValues();<ESC>hi
+iab uds use Data::Show;<CR>show
+iab ubm use Benchmark qw( cmpthese );<CR><CR>cmpthese -10, {<CR>};<ESC>O
+iab usc use Smart::Comments;<CR>###
+iab uts use Test::Simple 'no_plan';
+iab utm use Test::More 'no_plan';
+iab dbs $DB::single = 1;<ESC>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM-JAVASCRIPT
+" Configuration of vim-javascript
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+set foldmethod=syntax
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" READ BUFFER
+" open the file where we last edited it
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal g'\"" |
+    \ endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"function! InsertTabWrapper()
+"    let col = col('.') - 1
+"    if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<tab>"
+"    else
+"        return "\<c-p>"
+"    endif
+"endfunction
+"inoremap <expr> <tab> InsertTabWrapper()
+"inoremap <s-tab> <c-n>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SICK OF TYPING SUBSTITUTE COMMAND
+" Type shift + S for shortcut, shift + M for last match
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap S :%s///g<LEFT><LEFT><LEFT>
+vmap S :Blockwise s///g<LEFT><LEFT><LEFT>
+
+nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
+vmap <expr> M ':s/' . @/ . '//g<LEFT><LEFT>'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SICK OF TYPING SET PASTE
+" Type shift + P for shortcut
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap P :set paste<CR>
+vmap P :set paste<CR>
+" Turn it off
+nmap !P :set nopaste<CR>
+vmap !P :set nopaste<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SICK OF TYPING SET NUMBER
+" Type shift + N for shortcut
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap O :set number<CR>
+vmap O :set number<CR>
+" Turn it off
+nmap !O :set nonumber<CR>
+vmap !O :set nonumber<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAP TOGGLE of Goyo.vim
+" To toggle the distraction free environment
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map  <F8> :Goyo<CR>
+"nmap :Goyo 120x100%<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SET WIDTH AND HEIGHT OF GOYO
+" create a larger screen when in distraction mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goyo_width = 250
+let g:goyo_height = 300
+let g:goyo_margin_top = 10
+let g:goyo_margin_bottom = 10
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" QUIT WHEN GOYO IS ACTIVE
+" Ensure :q quits vim instean od toggling goyo if it is active
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:goyo_enter()
+  "highlight extra whitespace
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  match ExtraWhitespace /\s\+$/
+  setlocal linebreak
+  setlocal wrap
+  setlocal wrapmargin=0
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+
+  "highlight extra whitespace
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  match ExtraWhitespace /\s\+$/
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMMAND-T ENABLING THE ESC KEY TO EXIT
+" This function allows you to use ESC or C-c to exit COMMAND-T tool
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if &term =~ "xterm" || &term =~ "screen"
+    let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMMENT VISIBILITY
+" Ensure comments are visible
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight Comment term=bold ctermfg=white
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ENABLE CLICK AROUND
+" Ensure that we can still copy and paste whilst in clickable mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set mouse=nv
+
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ENABLE PASTE WITHOUT INDENTING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+   set pastetoggle=<Esc>[201~
+   set paste
+return ""
+endfunction

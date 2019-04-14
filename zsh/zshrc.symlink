@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+
+source ~/.bash_aliases
+
+ZSH_THEME="mark-amuse" # better than above
+
+source $ZSH/oh-my-zsh.sh
+
+source ~/.iterm2_shell_integration.zsh
+
+# local pinto
+source ~/opt/local/pinto/etc/bashrc
+
+# plenv
+export PATH="$HOME/.plenv/bin:$PATH"
+eval "$(plenv init -)"
+# direnv
+eval "$(direnv hook zsh)"
