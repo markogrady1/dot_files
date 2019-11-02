@@ -1,13 +1,17 @@
 """ set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+""" to install these plugins simply run :PluginInstall
 """ alternatively, pass a path where Vundle should install plugins
 """call vundle#begin('~/some/path/here')
 ""
 " Vundle package manager
 Plugin 'VundleVim/Vundle.vim'
 " Git wrapper vim-fugitive
-Plugin 'vim-fugitive'
+" Plugin 'vim-fugitive'
+" File finder command-t
+Plugin 'scrooloose/nerdtree'
 " File finder command-t
 Plugin 'wincent/command-t'
 " parser for a condensed HTML format sparkup
@@ -24,71 +28,139 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'vim-syntastic/syntastic'
 " handy plugin to open NerdTree in all tabs rather than on the one.
 Plugin 'jistr/vim-nerdtree-tabs'
+" plugin to view git changes and modifications
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " required
 
 " set runtimepath for ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CURSOR LINE
-" Set the cursor line to be visisble and underlined
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set cursorline
-"hi clear CursorLine
-"hi CursorLine gui=underline
-"hi CursorLine term=bold cterm=bold guibg=grey10
-"highlight Cursorline cterm=bold
+"set status line so its visible
+set statusline=2
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
+set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=\ %n\           " buffer number
+set statusline+=%#Visual#       " colour
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#      " colour
+set statusline+=%R               " readonly flag
+set statusline+=%M               " modified [+] flag
+set statusline+=%#Cursor#        " colour
+set statusline+=%#CursorLine#    " colour
+set statusline+=\ %t\            " short file name
+set statusline+=%=               " right align
+set statusline+=%#CursorLine#    " colour
+set statusline+=\ %Y\            " file type
+set statusline+=%#CursorIM#      " colour
+set statusline+=\ %3l:%-2c\      " line + column
+set statusline+=%#Cursor#        " colour
+set statusline+=\ %3p%%\         " percentage
+set statusline+=%4*\ %<%F%*      " path to file
+
+set nocompatible
+
+"save automaticly when run external command
+set autowrite
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+set autoindent      " always set autoindenting on
+set smartindent
+"set expandtab
+" all tab stuff to 4
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set cinoptions=>4
+set expandtab  "otherwise source code looks differntly depending on viewer
+
+set noswapfile
+
+set nobackup        " do not keep a backup file, use versions instead
+set viminfo='50,\"500
+set history=150     " keep 50 lines of command line history
+set ruler       " show the cursor position all the time
+set showcmd     " display incomplete commands
+set incsearch       " do incremental searching
+set confirm     " ask instead of error message
+set showmatch       "control if right bracket match, if not beep
+set ruler
+set rulerformat=set rulerformat=%-35(%4l,%02c\ %07P%)\ \ %f\ %< "show position of cursor
+set clipboard=unnamed   "copy into clipboard yanked lines (choosen with y)
+"automatic completition of commands
+set wildchar=<Tab>
+set wildmenu
+set wildmode=longest:full,full
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+map <F1> :buffers<CR>
+map <F2> :w<CR>
+map <F3> [I
+map <F4> :bp<CR>
+map <F5> :bn<CR>
+map <F6> :!perl %<CR>
+map <F7> :resize +10<CR>
+map <F9> :!perl -c %<CR>
+map <F12> :q!<CR>
+imap <F1> <Esc>:buffers<CR>
+imap <F2> <Esc>:w<CR>
+imap <F3> <Esc>[I
+imap <F4> <Esc>:bp<CR>
+imap <F5> <Esc>:bn<CR>
+imap <F6> <Esc>:!perl %<CR>
+imap <F7> <Esc>:resize +10<CR>
+imap <F9> <Esc>:!perl -c %<CR>
+imap <F12> <Esc>:q!<CR>
+
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+  hi Comment ctermfg=darkgreen
+endif
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+" For all text files set 'textwidth' to 78 characters.
+autocmd FileType text setlocal textwidth=78
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
+endif " has("autocmd")
+abbrev udu use Data::Dumper
+" abbrev dump print Dumper(
+abbrev pr print
+abbrev ret return
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+highlight FuckingTabs ctermbg=red guibg=red
+match FuckingTabs /\t\+/
+
 set number
-"set relativenumber
-
-"In some colorschemes the current line highlighting changes background, in others, like Desert, the current line is underlined.
-
-"I want to change the current line highlighting in Desert to use a different background color instead of underlining. How can I do that?
-
-"My .vimrc:
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PREVENT FOLDING OF CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nofoldenable
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLOR SCHEME
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set colorscheme
-"colorscheme desert
 colorscheme delek
 color dracula
-"colorscheme solarized
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FONTS PER SYSTEM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set guifont=Inconsolata\ for\ Powerline:h15
-"set t_Co=256
-"set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
-"set termencoding=utf-8
-"if has("gui_running")
-"   let s:uname = system("uname")
-"   if s:uname == "Darwin\n"
-"      set guifont=Inconsolata\ for\ Powerline:h15
-"   endif
-"endif
-"source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
-"execute pathogen#infect()
+set background=dark
 
 set encoding=utf-8
 set autoindent
-"set sytax colors on
 syntax on
-"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-"set the tab size
-"set ts=4
-"replace tabs with spaces
-"set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -96,32 +168,9 @@ set expandtab
 
 "disable/enable visual alarms 'ding'
 set visualbell
-"show the line numbers that are highlighted
-"set showcmd
-"set status line so its visible
+
 set laststatus=2
-
-"set powerline symbols
-let g:Powerline_symbols = 'fancy'
-
-"enable macvim to have its own colorscheme
-let macvim_skip_colorscheme=1
-"set left seperator
-let g:airline#extensions#tabline#left_sep = ""
-let g:airline_left_sep=""
-"set right seporator
-let g:airline_right_sep=""
-"set the theme for vim-airline
-let g:airline_theme = 'dark'
-
-"enable/disable airline fonts
-"let g:airline_powerline_fonts=1
-"set the theme for vim-airline
-let g:airline_theme = 'dark'
-set background=dark
 set linespace=2
-set statusline +=%4*\ %<%F%*
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 set showmode
 
 "set the color schemes for templates and bash
@@ -141,14 +190,6 @@ hi Directory guifg=#7ad7fc ctermfg=45
 highlight VertSplit ctermbg=45
 highlight VertSplit ctermfg=45
 set noeb vb t_vb=
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TURN OFF ARROW KEYS
-" Set up to train myself to only use traditional vim keys h-j-k-l
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"map <Left> :echo "Please use H key!"<cr>
-"map <Right> :echo "Please use L key!"<cr>
-"map <Up> :echo "Please use K key!"<cr>
-"map <Down> :echo "Please use J key!"<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAP TOGGLE of NERDTree HIDE/SHOW
@@ -170,7 +211,7 @@ map  <F6> ::CtrlP<CR>
 " MAP THE ESCAPE TO DOUBLE J
 " Instead of constantly reaching for the ESC key, we can hit jj
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap jj <Esc>	sd
+imap jj <Esc>   sd
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FAT COMMA SHORTCUT
@@ -219,21 +260,6 @@ autocmd BufReadPost *
     \ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"function! InsertTabWrapper()
-"    let col = col('.') - 1
-"    if !col || getline('.')[col - 1] !~ '\k'
-"        return "\<tab>"
-"    else
-"        return "\<c-p>"
-"    endif
-"endfunction
-"inoremap <expr> <tab> InsertTabWrapper()
-"inoremap <s-tab> <c-n>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SICK OF TYPING SUBSTITUTE COMMAND
 " Type shift + S for shortcut, shift + M for last match
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -262,56 +288,16 @@ vmap O :set number<CR>
 " Turn it off
 nmap !O :set nonumber<CR>
 vmap !O :set nonumber<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MAP TOGGLE of Goyo.vim
-" To toggle the distraction free environment
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map  <F8> :Goyo<CR>
-"nmap :Goyo 120x100%<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SET WIDTH AND HEIGHT OF GOYO
-" create a larger screen when in distraction mode
+" SICK OF TYPING CASE INSENSITIVE
+" Type shift + C for shortcut
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:goyo_width = 250
-let g:goyo_height = 300
-let g:goyo_margin_top = 10
-let g:goyo_margin_bottom = 10
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" QUIT WHEN GOYO IS ACTIVE
-" Ensure :q quits vim instean od toggling goyo if it is active
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:goyo_enter()
-  "highlight extra whitespace
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  match ExtraWhitespace /\s\+$/
-  setlocal linebreak
-  setlocal wrap
-  setlocal wrapmargin=0
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-endfunction
-
-function! s:goyo_leave()
-  " Quit Vim if this is the only remaining buffer
-
-  "highlight extra whitespace
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  match ExtraWhitespace /\s\+$/
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-
-autocmd! User GoyoEnter call <SID>goyo_enter()
-autocmd! User GoyoLeave call <SID>goyo_leave()
+nmap C :set ic<CR>
+vmap C :set ic<CR>
+" Turn it off
+nmap !C :set noic<CR>
+vmap !C :set noic<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COMMAND-T ENABLING THE ESC KEY TO EXIT
@@ -346,3 +332,24 @@ function! XTermPasteBegin()
    set paste
 return ""
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM GUTTER SETTTINGS
+" View changes and modifications to your git repo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set updatetime=100
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pretty print JSON
+" Type shift + J for formatting JSON data
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap J :%!python -m json.tool<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ENABLE PERL RELATED SHORTCUTS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F11> :!perl -cW %<CR>
+map <F10> :%!perltidy<CR>
+map <+> :resize +10<CR>
