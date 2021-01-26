@@ -1,8 +1,8 @@
-FROM perl:5.18.2
+FROM perl:5.26.1
 
 ENV MOJO_MODE=development
 
-# SVN and CPAN mirrors
+# CPAN mirror
 export CPAN_MIRROR=https://cpan.metacpan.org
 
 RUN cpanm local::lib
