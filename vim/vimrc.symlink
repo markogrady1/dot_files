@@ -30,6 +30,20 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'jistr/vim-nerdtree-tabs'
 " plugin to view git changes and modifications
 Plugin 'airblade/vim-gitgutter'
+" reveals character representation in decimal, octal, and hex
+Plugin 'tpope/vim-characterize'
+" comments out the visual block
+Plugin 'tpope/vim-commentary'
+" closed quotes
+Plugin 'Raimondi/delimitMate'
+" grep in vim
+Plugin 'mhinz/vim-grepper'
+" view git branch tree
+Plugin 'junegunn/gv.vim'
+" view git branch tree
+Plugin 'markonm/traces.vim'
+" wakatime plugin for tracking coding productivity
+Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()            " required
 
