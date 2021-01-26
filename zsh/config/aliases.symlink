@@ -93,3 +93,22 @@ function entre_watch {
     find lib/ t/ -name '*.pm' -o -name '*.t' | entr -s "prove -r $1"
 
 }
+
+# =================================================
+# function used to get Perl dependency versions
+# perl  -MMojolicious -e 'print $Mojolicious::VERSION;'
+# add -l for local::lib add -g for global check
+# =================================================
+function vn {
+    declare var{module,local_lib}=""
+    while [ -n "$1" ]; do
+        case "$1" in
+        -l) local_lib="-Mlocal::lib=local";;
+        -g) local_lib="";;
+         *) module=$1;;
+        esac
+        shift
+    done
+    echo "perl ${local_lib} -M${module} -e 'print \$${module}::VERSION;'";
+    perl $local_lib -M$module -e "print \$${module}::VERSION;";echo
+}
