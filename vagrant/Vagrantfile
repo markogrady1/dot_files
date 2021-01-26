@@ -1,7 +1,13 @@
+# allow U14 and U16 via UB_VERSION env
+ubuntu_version = "trusty64"
+if "#{ENV['UB_VERSION']}" == "xenial"
+   ubuntu_version = "xenial64"
+end
+
 Vagrant.configure("2") do |config|
 
   # specify the base
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/#{ubuntu_version}"
 
   # only share my "src" directory (does not carry through to box)
   config.vm.synced_folder ".", "/vagrant", disabled: true
