@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 # setup git env variables
 if [[ $1 && $2 ]]; then
     export GIT_USERNAME="$1"
