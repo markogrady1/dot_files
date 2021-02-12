@@ -65,9 +65,9 @@ alias dockcont='docker ps -a'
 # alias for starting redis server
 alias redserv='redis-server'
 # alias to use 'bat' instead of 'cat'
-alias cat='bat --style=plain,grid,header'
+#alias cat='bat --style=plain,grid,header'
 # alias to cd into local copy of cheerleader
-alias less='bat --style=plain,grid,header'
+#alias less='bat --style=plain,grid,header'
 # alias to use 'podify' which will add POD to perl module
 alias podify='~/perl5/bin/podify.pl '
 # alias to use local::lib in current shell
