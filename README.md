@@ -5,5 +5,5 @@
 🚀 setup environment
 
 ```
-$ bash install_env.sh  your-github-username@blah.com  your-github-password
+$ bash install_env.sh
 ```
