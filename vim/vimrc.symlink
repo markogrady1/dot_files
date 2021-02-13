@@ -1,7 +1,9 @@
 """ set the runtime path to include Vundle and initialize
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" open .vimrc and type :PluginInstall
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 """ to install these plugins simply run :PluginInstall
 """ alternatively, pass a path where Vundle should install plugins
 """call vundle#begin('~/some/path/here')
