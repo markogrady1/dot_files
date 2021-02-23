@@ -17,7 +17,7 @@
 # used to split on them. A } in the commit subject or any other field will
 # break this.
 
-# if git complains about the 'always' keyword, simply remove 'always,' from this file
+# if git complains about the 'always' keyword, simply remove 'always,' from this file :%s/always,//g
 LOG_HASH="%C(always,yellow)%h%C(always,reset)"
 LOG_RELATIVE_TIME="%C(always,green)(%ar)%C(always,reset)"
 LOG_AUTHOR="%C(always,blue)<%an>%C(always,reset)"
