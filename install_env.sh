@@ -5,6 +5,9 @@ cp dot_files/perltidy/perltidyrc.symlink ~/.perltidyrc
 cat dot_files/vim/vimrc.symlink >> ~/.vimrc
 mkdir -p ~/.vim/colors
 cp dot_files/vim/colors/dracula.vim ~/.vim/colors/
+cp dot_files/vim/templates/pm_header.temp ~/.vim/pm_header.temp
+cp dot_files/vim/templates/pl_header.temp ~/.vim/pl_header.temp
+
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 if [ ! -f "~/.bashrc" ]; then

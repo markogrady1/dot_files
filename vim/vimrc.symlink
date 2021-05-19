@@ -196,6 +196,10 @@ autocmd FileType *.sh colorscheme desert
 autocmd BufNewFile,BufRead *.sh  colorscheme desert
 "autocmd BufNewFile,BufRead *.template  colorscheme slate
 
+"use templates for Perl .pl and .pm files
+au BufNewFile *.pm 0r ~/.vim/pm_header.temp
+au BufNewFile *.pl 0r ~/.vim/pl_header.temp
+
 "this will highlight each and every match during a word search
 set hlsearch
 set timeoutlen=1000 ttimeoutlen=0

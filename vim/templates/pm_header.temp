@@ -1,0 +1,28 @@
+package <PACKAGE::NAME>;
+
+=head1 NAME
+
+App::Some::Package
+
+=head1 DESCRIPTION
+
+Some package description.
+
+=cut
+
+
+
+
+=head2 some_subroutine
+
+subroutine description
+
+=cut
+
+sub some_subroutine {
+    my ($self) = @_;
+
+    # .........
+}
+
+1;
