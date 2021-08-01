@@ -77,6 +77,12 @@ alias rt='prove -r -j5 -I lib/ -I t/lib/ -Mlocal::lib=local t/'
 # alias for entre to watch tests
 alias watch="entre_watch $1"
 
+# process aliases
+# top memory using processes
+alias psmem='ps -eo etime,pid,ppid,%mem,%cpu,cmd --sort=-%mem | head'
+# to cpu using processes
+alias pscpu='ps -eo etime,pid,ppid,%mem,%cpu,cmd --sort=-%cpu | head'
+
 # ================================================
 
 # docker aliases
