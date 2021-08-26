@@ -118,3 +118,8 @@ function vn {
     echo "perl ${local_lib} -M${module} -e 'print \$${module}::VERSION;'";
     perl $local_lib -M$module -e "print \$${module}::VERSION;";echo
 }
+
+# ================================================
+# Mac specific open finder in current directory
+# ================================================
+alias o='open .'
