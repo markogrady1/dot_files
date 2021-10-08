@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 cp dot_files/perltidy/perltidyrc.symlink ~/.perltidyrc
 
 cat dot_files/vim/vimrc.symlink >> ~/.vimrc

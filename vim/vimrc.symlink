@@ -44,8 +44,6 @@ Plugin 'mhinz/vim-grepper'
 Plugin 'junegunn/gv.vim'
 " view git branch tree
 Plugin 'markonm/traces.vim'
-" wakatime plugin for tracking coding productivity
-Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()            " required
 
@@ -192,8 +190,8 @@ set showmode
 "set the color schemes for templates and bash
 autocmd BufNewFile,BufRead *.template   set syntax=perl
 "autocmd BufNewFile,BufRead *.t   set syntax=perl
-autocmd FileType *.sh colorscheme desert
-autocmd BufNewFile,BufRead *.sh  colorscheme desert
+"autocmd FileType *.sh colorscheme desert
+"autocmd BufNewFile,BufRead *.sh  colorscheme desert
 "autocmd BufNewFile,BufRead *.template  colorscheme slate
 
 "use templates for Perl .pl and .pm files
