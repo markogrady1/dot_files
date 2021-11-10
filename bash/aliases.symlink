@@ -46,6 +46,8 @@ alias gitco='git checkout '
 alias gbl='git branch -l '
 #alias for git pretty branching
 alias lgp='git log --pretty=oneline --graph --decorate --all'
+#alias for git grep
+alias gg='git grep -p '
 #alias for starting a mongodb server instance
 alias mgo='mongod'
 #alias for viewing environment variables
