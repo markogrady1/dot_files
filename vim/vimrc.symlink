@@ -259,6 +259,7 @@ iab usc use Smart::Comments;<CR>###
 iab uts use Test::Simple 'no_plan';
 iab utm use Test::More 'no_plan';
 iab dbs $DB::single = 1;<ESC>
+iab dtf open(my $fh, '>', '/tmp/testing.txt');<CR>print $fh "dump to file\n";<CR>close $fh;
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM-JAVASCRIPT
