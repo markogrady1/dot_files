@@ -1,9 +1,6 @@
 [core]
 	eol = lf
 	autocrlf = input
-[user]
-	name = <NAME>
-	email = <EMAIL>
 [diff]
 [color]
 	ui = true
