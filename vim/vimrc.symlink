@@ -132,6 +132,18 @@ imap <F7> <Esc>:resize +10<CR>
 imap <F9> <Esc>:!perl -c %<CR>
 imap <F12> <Esc>:q!<CR>
 
+" vim-commentary plugin settings
+" set alias of 'ch' for commentary and set filetypes i use
+map  ch ga
+
+" set alias of 'cm' for commentary and set filetypes i use
+map  cm gc
+
+autocmd FileType perl setlocal commentstring=#\ %s
+autocmd FileType sh setlocal commentstring=#\ %s
+autocmd FileType javascript setlocal commentstring=//\ %s
+
+
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   syntax on
